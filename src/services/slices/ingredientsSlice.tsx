@@ -1,34 +1,24 @@
 import { getIngredientsApi } from '@api';
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
 
 type TIngredientsSlice = {
   ingredients: TIngredient[];
   isLoading: boolean;
-  // isModal: boolean;
 };
 
 const initialState: TIngredientsSlice = {
   ingredients: [],
   isLoading: false
-  // isModal: true
 };
 
 export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
-  reducers: {
-    // onOpenModal(state) {
-    //   state.isModal = true;
-    // },
-    // onCloseModal(state) {
-    //   state.isModal = false;
-    // }
-  },
+  reducers: {},
   selectors: {
     selectIngredients: (state) => state.ingredients,
     selectIsLoading: (state) => state.isLoading
-    // selectIsModal: (state) => state.isModal
   },
   extraReducers: (builder) => {
     builder.addCase(getIngredients.pending, (state) => {
@@ -44,11 +34,10 @@ export const ingredientsSlice = createSlice({
   }
 });
 
-export const getIngredients = createAsyncThunk('getIngredients', async () =>
-  getIngredientsApi()
+export const getIngredients = createAsyncThunk(
+  'getIngredients',
+  getIngredientsApi
 );
 
 export const { selectIngredients, selectIsLoading } =
   ingredientsSlice.selectors;
-
-// export const { onCloseModal, onOpenModal } = ingredientsSlice.actions;

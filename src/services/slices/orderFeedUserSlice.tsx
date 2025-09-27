@@ -42,32 +42,10 @@ export const orderFeedUserSlice = createSlice({
     builder.addCase(getOrdersUser.rejected, (state) => {
       state.isLoading = false;
     });
-    // builder.addCase(addNewOrder.pending, (state) => {
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(addNewOrder.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-
-    //   // state.orderUserModal = action.payload.order;
-    // });
-    // builder.addCase(addNewOrder.rejected, (state) => {
-    //   state.isLoading = false;
-    // });
   }
 });
 
-export const getOrdersUser = createAsyncThunk('getOrdersUser', async () => {
-  const data = getOrdersApi();
-  return data;
-});
-
-// export const addNewOrder = createAsyncThunk(
-//   'addNewOrder',
-//   async (data: string[]) => {
-//     const result = orderBurgerApi(data);
-//     return result;
-//   }
-// );
+export const getOrdersUser = createAsyncThunk('getOrdersUser', getOrdersApi);
 
 export const { selectOrdersUser, selectOrderUserModal } =
   orderFeedUserSlice.selectors;

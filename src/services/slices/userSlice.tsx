@@ -108,10 +108,7 @@ export const userSlice = createSlice({
   }
 });
 
-export const getUser = createAsyncThunk('getUser', async () => {
-  const result = getUserApi();
-  return result;
-});
+export const getUser = createAsyncThunk('getUser', getUserApi);
 
 export const updateUser = createAsyncThunk(
   'updateUser',
@@ -136,9 +133,6 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const logoutUser = createAsyncThunk('logoutUser', async () => {
-  const result = logoutApi();
-  return result;
-});
+export const logoutUser = createAsyncThunk('logoutUser', logoutApi);
 
 export const { selectUser, selectIsAuthChecked } = userSlice.selectors;

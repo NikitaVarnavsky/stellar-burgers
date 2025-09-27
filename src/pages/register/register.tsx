@@ -18,11 +18,6 @@ export const Register: FC = () => {
         password
       })
     );
-    console.log({
-      email,
-      name: userName,
-      password
-    });
   };
 
   return (

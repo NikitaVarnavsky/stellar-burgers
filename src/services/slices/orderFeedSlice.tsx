@@ -45,10 +45,7 @@ export const orderFeedSlice = createSlice({
   }
 });
 
-export const getFeeds = createAsyncThunk('getFeeds', async () => {
-  const data = getFeedsApi();
-  return data;
-});
+export const getFeeds = createAsyncThunk('getFeeds', getFeedsApi);
 
 export const { selectOrders, selectTotalOrders, selectTotalToday } =
   orderFeedSlice.selectors;

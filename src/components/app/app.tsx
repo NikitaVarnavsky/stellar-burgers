@@ -88,14 +88,18 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <Modal
-                title='Заказ оформлен'
-                onClose={() => {
-                  navigation(-1);
-                }}
-              >
-                <OrderInfo />
-              </Modal>
+              <ProtectedRoute
+                component={
+                  <Modal
+                    title='Заказ оформлен'
+                    onClose={() => {
+                      navigation(-1);
+                    }}
+                  >
+                    <OrderInfo />
+                  </Modal>
+                }
+              />
             }
           />
           <Route
