@@ -5,7 +5,12 @@ import {
   nanoid,
   PayloadAction
 } from '@reduxjs/toolkit';
-import { TConstructorItems, TIngredient, TOrder } from '@utils-types';
+import {
+  TConstructorIngredient,
+  TConstructorItems,
+  TIngredient,
+  TOrder
+} from '@utils-types';
 
 type TBurgerConstructorSlice = {
   constructorItems: TConstructorItems;
@@ -38,7 +43,9 @@ export const burgerConstructorSlice = createSlice({
       reducer(state, action: PayloadAction<TIngredient>) {
         action.payload.type === 'bun'
           ? (state.constructorItems.bun = action.payload)
-          : state.constructorItems.ingredients.push(action.payload);
+          : state.constructorItems.ingredients.push(
+              action.payload as TConstructorIngredient
+            );
       },
       prepare: (ingredient: TIngredient) => ({
         payload: {
@@ -58,10 +65,11 @@ export const burgerConstructorSlice = createSlice({
           (item, index) => item !== selectItem
         );
     },
-    ingredientUp(state, action: PayloadAction<TIngredient>) {
+    ingredientUp(state, action: PayloadAction<TConstructorIngredient>) {
       const indexSelectItem = state.constructorItems.ingredients.findIndex(
-        (ingredient) => ingredient._id === action.payload._id
+        (ingredient) => ingredient.id === action.payload.id
       );
+
       const prevItem = state.constructorItems.ingredients[indexSelectItem - 1];
       state.constructorItems.ingredients.splice(
         indexSelectItem - 1,
@@ -70,16 +78,17 @@ export const burgerConstructorSlice = createSlice({
         prevItem
       );
     },
-    ingredientDown(state, action: PayloadAction<TIngredient>) {
+
+    ingredientDown(state, action: PayloadAction<TConstructorIngredient>) {
       const indexSelectItem = state.constructorItems.ingredients.findIndex(
-        (ingredient) => ingredient._id === action.payload._id
+        (ingredient) => ingredient.id === action.payload.id
       );
       const prevItem = state.constructorItems.ingredients[indexSelectItem + 1];
       state.constructorItems.ingredients.splice(
         indexSelectItem,
         2,
         prevItem,
-        action.payload
+        action.payload as TConstructorIngredient
       );
     }
   },

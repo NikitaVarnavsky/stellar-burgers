@@ -41,5 +41,5 @@ export type TTabMode = 'bun' | 'sauce' | 'main';
 
 export type TConstructorItems = {
   bun: Partial<TIngredient> | null;
-  ingredients: TIngredient[];
+  ingredients: TConstructorIngredient[];
 };

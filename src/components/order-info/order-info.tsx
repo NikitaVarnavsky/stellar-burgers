@@ -10,9 +10,9 @@ import { getFeeds, selectOrders } from '../../services/slices/orderFeedSlice';
 export const OrderInfo: FC = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getFeeds());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getFeeds());
+  // }, []);
 
   const ingredients: TIngredient[] = useSelector(selectIngredients);
   const orders = useSelector(selectOrders);
