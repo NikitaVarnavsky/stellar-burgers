@@ -440,7 +440,7 @@ describe('orderFeedUserSlice', () => {
         payload: mockResponse
       };
       const state = orderFeedUserSlice.reducer(initialState, action);
-      expect(state.ordersUser).toEqual(mockResponse)
+      expect(state.ordersUser).toEqual(mockResponse);
       expect(state.isLoading).toBe(false);
     });
     test('getOrdersUser rejected', () => {
